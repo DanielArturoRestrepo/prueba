@@ -31,6 +31,11 @@ a{
   margin-bottom: 10px;
 }
 
+.mLados{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 @media all and (max-width: 480px) {
   #emucril{
     /*margin-left: 25%;
