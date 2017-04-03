@@ -1,0 +1,48 @@
+
+body{
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background-color: rgb(253,253,253);
+}
+
+a{
+  text-decoration: none;
+}
+
+#emucril{
+  margin-left: 45%;
+  margin-right: auto;
+  display: block;
+  width: auto;
+  max-height: 100%;
+}
+
+.formus{
+  margin: 15px;
+  margin-left: 20%
+}
+
+.formus label, .formus input {
+  display:block;
+}
+
+.formus div{
+  margin-bottom: 10px;
+}
+
+@media all and (max-width: 480px) {
+  #emucril{
+    /*margin-left: 25%;
+    margin-right: 25%;*/
+    width: 100%;
+    min-height: 100px;
+    max-height: 100%;
+  }
+}
+
+@media all and (max-width: 270px) {
+  #emucril{
+    /*min-width: 100%;*/
+  }
+}

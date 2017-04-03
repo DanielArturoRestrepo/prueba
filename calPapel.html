@@ -17,26 +17,45 @@
     <link rel="stylesheet" href="css/global.css">
 
     <!-- Titulo -->
-    <title>Pinturas Emucril</title>
+    <title>Calculadora A</title>
 
   </head>
   <body>
     <div data-role="header">
-      <div class="ui-grid-a">
+      <div class="ui-grid-b">
         <div class="ui-block-a">
-          <img src="img/logo2.jpg" alt="logo" class="ui-responsive" id="emucril">
+          <img src="img/logo2.jpg" alt="logo">
         </div>
       </div>
     </div>
 
-    <div class="ui-grid-solo">
-      <div>
-        <a href="calculadoraA.html"><button class="ui-btn ui-icon-star ui-btn-icon-right ui-shadow">Cal A</button></a>
-      </div>
+    <div class="ui-grid-a">
+
+      <form class="formus" action="" method="post">
+
+        <div>
+          <label for="pancho">Ancho de la pared (m):</label>
+          <input type="text" name="pancho" id="pancho">
+        </div>
+
+        <div>
+          <label for="palto">Alto de la pared (m):</label>
+          <input type="text" name="palto" id="palto">
+        </div>
+
+        <div>
+          <input type="reset" class="ui-btn" name="reset" value="Borrar">
+        </div>
+
+
+      </form>
+
+      <div id="display" class="ui-grid-a"></div>
 
       <div>
-        <a href="calculadoraB.html"><button class="ui-btn ui-icon-shop ui-btn-icon-right ui-shadow">Cal B</button></a>
+        <a href="calculadoraA.html"><button class="ui-btn ui-icon-back ui-btn-icon-right ui-shadow">Volver</button></a>
       </div>
+
     </div>
 
     <!-- JS -->
