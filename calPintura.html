@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+  	<meta charset="utf-8">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -31,30 +31,32 @@
 
     <div class="ui-grid-solo mLados">
 
-      <form class="formus" action="calculos/calpintura.php" method="post">
+      <form class="formus" action="calculos/calpintura.php" method="post" id="formPint">
 
         <div>
           <label for="superficie">Superficie a pintar (M2):</label>
-          <input type="text" name="superficie" id="superficie">
+          <input type="number" name="superficie" id="superficie" required="">
         </div>
 
         <div>
           <label for="rendimiento">Rendimiento de la pintura:</label>
-          <input type="text" name="rendimiento" id="rendimiento">
+          <input type="number" name="rendimiento" id="rendimiento" required="">
         </div>
 
         <div>
           <label for="manos">Manos de pintura:</label>
-          <input type="text" name="manos" id="manos">
+          <input type="number" name="manos" id="manos" required="">
         </div>
 
+        <div id="display" class="ui-grid-solo"></div>
+
         <div>
-          <input type="reset" class="ui-btn" name="reset" value="Borrar">
+          <button class="ui-btn" id="enviar" style="display: inline;">Calcular</button>
+          <button class="ui-btn" id="borrar" style="display: inline;">Borrar</button>
         </div>
 
       </form>
 
-      <div id="display" class="ui-grid-a"></div>
 
       <div>
         <a href="calculadoraA.html"><button class="ui-btn ui-icon-back ui-btn-icon-right ui-shadow">Volver</button></a>
@@ -63,10 +65,78 @@
     </div>
 
     <!-- JS -->
-    <script type="text/javascript" src="cordova.js"></script>
+    <!-- <script type="text/javascript" src="cordova.js"></script> -->
     <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
     <!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
-    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js">
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $('#enviar').attr('disabled','disabled');
+
+        $('#superficie').change(removeDisabled).keyup(removeDisabled);
+        $('#rendimiento').change(removeDisabled).keyup(removeDisabled);
+        $('#manos').change(removeDisabled).keyup(removeDisabled);
+
+      });
+
+
+      // Manejador de evento para mostrar cálculo
+      $('#formPint').submit(function(e){
+
+        e.preventDefault();
+
+        $.ajax({
+
+          type: 'POST',                              // Método
+
+          url: 'calculos/calpintura.php',            // Archivo al que se envia
+
+          data: {                                    // Datos
+
+            superficie: $('#superficie').val(),
+
+            rendimiento: $('#rendimiento').val(),
+
+            manos: $('#manos').val(),
+          },                                         // Fin Datos
+
+          success: function(response){               // Accion
+
+            $('#display').html(response);
+
+            }
+          });
+        });
+
+      $('#borrar').click(function(e){
+
+        e.preventDefault();
+
+        $('#display').text('');
+
+        $('#formPint input').val('');
+
+        $('#formPint label').removeClass('error');
+
+        $('#formPint input').removeClass('error');
+
+        $('#enviar').attr('disabled','disabled');
+
+      });
+
+      function removeDisabled(){
+        var rellenos = true;
+        $('#formPint input').each(function(){
+
+          if ( ( $(this).val() == '' ) ) {
+            rellenos = false;
+            return false;
+          }
+        });
+
+        $('#enviar').prop('disabled', !rellenos);
+      }
 
     </script>
 
