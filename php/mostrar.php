@@ -4,13 +4,13 @@
 
   $datos = array();
 
-  $sql = 'select * from familia;';
+  $sql = 'select nombre from familia;';
   $result = mysqli_query($conexion,$sql);
 
   if (mysqli_num_rows($result) > 0) {
 
-    while ($row = mysqli_fetch_object($result)) {
-      $datos[] = $row;
+    while ($row = mysqli_fetch_assoc($result)) {
+      $datos[] = $row['nombre'];
     }
 
     echo json_encode($datos);
