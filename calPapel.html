@@ -8,12 +8,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
     <!-- Estilos -->
-    <!-- <link rel="stylesheet" href="css/jquery-ui.min.css"> -->
-    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-    <!-- <link rel="stylesheet" href="css/jquery.mobile.icons-1.4.5.min.css">
-    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css">
-    <link rel="stylesheet" href="css/jquery.mobile.theme-1.4.5.min.css"> -->
     <link rel="stylesheet" href="css/global.css">
 
     <!-- Titulo -->
@@ -31,27 +26,26 @@
 
     <div class="ui-grid-solo mLados">
 
-      <form class="formus" action="" method="post">
+      <form class="formus" action="calculos/calpintura.php" method="post" id="form">
 
         <div>
-          <label for="pancho">Ancho de la pared (m):</label>
-          <input type="number" name="pancho" id="pancho">
+          <label for="ancho">Ancho de la pared (m):</label>
+          <input type="number" name="ancho" id="ancho" min="0" required="">
         </div>
 
         <div>
-          <label for="palto">Alto de la pared (m):</label>
-          <input type="number" name="palto" id="palto">
+          <label for="alto">Alto de la pared (m):</label>
+          <input type="number" name="alto" id="alto" min="0" required="">
         </div>
+
+        <div id="display" class="ui-grid-solo"></div>
 
         <div>
           <button class="ui-btn" id="enviar" style="display: inline;">Calcular</button>
           <button class="ui-btn" id="borrar" style="display: inline;">Borrar</button>
         </div>
 
-
       </form>
-
-      <div id="Pdisplay" class="ui-grid-solo"></div>
 
       <div>
         <a href="calculadoraA.html"><button class="ui-btn ui-icon-back ui-btn-icon-right ui-shadow">Volver</button></a>
@@ -60,10 +54,9 @@
     </div>
 
     <!-- JS -->
-    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
-    <!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
 
   </body>
 </html>

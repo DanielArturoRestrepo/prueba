@@ -12,33 +12,40 @@
     <link rel="stylesheet" href="css/global.css">
 
     <!-- Titulo -->
-    <title>Pinturas Emucril</title>
+    <title>Calculadora B</title>
 
   </head>
   <body>
     <div data-role="header">
-      <div class="ui-grid-a">
+      <div class="ui-grid-b">
         <div class="ui-block-a">
-          <img src="img/logo2.jpg" alt="logo" class="ui-responsive" id="emucril">
+          <img src="img/logo2.jpg" alt="logo">
         </div>
       </div>
     </div>
 
     <div class="ui-grid-solo mLados">
-      <div>
-        <a href="calculadoraA.html"><button class="ui-btn ui-icon-star ui-btn-icon-right ui-shadow">Cal A</button></a>
-      </div>
-
-      <div>
-        <a href="calculadoraB.html"><button class="ui-btn ui-icon-shop ui-btn-icon-right ui-shadow">Cal B</button></a>
-      </div>
+      <ul id="listview"></ul>
     </div>
 
     <!-- JS -->
-    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
-    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js">
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+        var url = 'php/mostrar.php';
+
+        $.getJSON(url, function(result){
+          console.log(result);
+          $.each(result, function(i, field){
+            var nombre = field.nombre;
+
+            $('#listview').append("<a class='ui-btn' href=''>" + nombre + "</a>");
+          });
+        });
+      });
     </script>
 
   </body>

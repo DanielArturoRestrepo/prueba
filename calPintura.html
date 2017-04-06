@@ -8,12 +8,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
     <!-- Estilos -->
-    <!-- <link rel="stylesheet" href="css/jquery-ui.min.css"> -->
-    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-    <!-- <link rel="stylesheet" href="css/jquery.mobile.icons-1.4.5.min.css">
-    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css">
-    <link rel="stylesheet" href="css/jquery.mobile.theme-1.4.5.min.css"> -->
     <link rel="stylesheet" href="css/global.css">
 
     <!-- Titulo -->
@@ -31,21 +26,21 @@
 
     <div class="ui-grid-solo mLados">
 
-      <form class="formus" action="calculos/calpintura.php" method="post" id="formPint">
+      <form class="formus" action="calculos/calpintura.php" method="post" id="form">
 
         <div>
           <label for="superficie">Superficie a pintar (M2):</label>
-          <input type="number" name="superficie" id="superficie" required="">
+          <input type="number" name="superficie" id="superficie" required="" min="0">
         </div>
 
         <div>
           <label for="rendimiento">Rendimiento de la pintura:</label>
-          <input type="number" name="rendimiento" id="rendimiento" required="">
+          <input type="number" name="rendimiento" id="rendimiento" required="" min="0">
         </div>
 
         <div>
           <label for="manos">Manos de pintura:</label>
-          <input type="number" name="manos" id="manos" required="">
+          <input type="number" name="manos" id="manos" required="" min="0">
         </div>
 
         <div id="display" class="ui-grid-solo"></div>
@@ -65,80 +60,9 @@
     </div>
 
     <!-- JS -->
-    <!-- <script type="text/javascript" src="cordova.js"></script> -->
     <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
-    <!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-
-    <script>
-      $(document).ready(function(){
-        $('#enviar').attr('disabled','disabled');
-
-        $('#superficie').change(removeDisabled).keyup(removeDisabled);
-        $('#rendimiento').change(removeDisabled).keyup(removeDisabled);
-        $('#manos').change(removeDisabled).keyup(removeDisabled);
-
-      });
-
-
-      // Manejador de evento para mostrar cálculo
-      $('#formPint').submit(function(e){
-
-        e.preventDefault();
-
-        $.ajax({
-
-          type: 'POST',                              // Método
-
-          url: 'calculos/calpintura.php',            // Archivo al que se envia
-
-          data: {                                    // Datos
-
-            superficie: $('#superficie').val(),
-
-            rendimiento: $('#rendimiento').val(),
-
-            manos: $('#manos').val(),
-          },                                         // Fin Datos
-
-          success: function(response){               // Accion
-
-            $('#display').html(response);
-
-            }
-          });
-        });
-
-      $('#borrar').click(function(e){
-
-        e.preventDefault();
-
-        $('#display').text('');
-
-        $('#formPint input').val('');
-
-        $('#formPint label').removeClass('error');
-
-        $('#formPint input').removeClass('error');
-
-        $('#enviar').attr('disabled','disabled');
-
-      });
-
-      function removeDisabled(){
-        var rellenos = true;
-        $('#formPint input').each(function(){
-
-          if ( ( $(this).val() == '' ) ) {
-            rellenos = false;
-            return false;
-          }
-        });
-
-        $('#enviar').prop('disabled', !rellenos);
-      }
-
-    </script>
+    <script type="text/javascript" src="js/script.js"></script>
 
   </body>
 </html>
